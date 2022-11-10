@@ -19,3 +19,8 @@ output "self_hosted_ir_secondary_authorization_key" {
   sensitive = true
   value     = module.datafactory.self_hosted_ir_secondary_authorization_key
 }
+
+output "azure_vm_private_ip_address" {
+  value = module.computing.azure_vm_private_ip_address
+}
+

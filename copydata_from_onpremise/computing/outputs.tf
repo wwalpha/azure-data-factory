@@ -1,3 +1,3 @@
-output "azurerm_win2012" {
-  value = azurerm_virtual_machine.win2012
+output "azure_vm_private_ip_address" {
+  value = azurerm_network_interface.win2012.private_ip_address
 }

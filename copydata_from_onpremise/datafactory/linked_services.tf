@@ -14,3 +14,10 @@ resource "azurerm_data_factory_linked_service_azure_sql_database" "this" {
   data_factory_id   = azurerm_data_factory.this.id
   connection_string = var.mssql_connection_string
 }
+
+resource "azurerm_data_factory_linked_service_sql_server" "this" {
+  name                     = "adventureWorks2012"
+  data_factory_id          = azurerm_data_factory.this.id
+  integration_runtime_name = azurerm_data_factory_integration_runtime_self_hosted.this.name
+  connection_string        = var.onpremise_connection_string
+}

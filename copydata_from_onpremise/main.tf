@@ -25,6 +25,10 @@ provider "azurerm" {
   use_msi = true
 }
 
+locals {
+  onpremise_connection_string = "Server=tcp:${module.computing.azure_vm_private_ip_address},1433;Initial Catalog=AdventureWorks2012;Persist Security Info=False;User ID=${var.onpremise_admin_username};Password=${var.onpremise_admin_password};MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;"
+}
+
 resource "azurerm_resource_group" "this" {
   name     = "DF_CD_RG"
   location = "Japan East"
@@ -70,9 +74,10 @@ module "datafactory" {
     module.database.mssql_connection_string
   ]
 
-  source                  = "./datafactory"
-  resource_group_name     = azurerm_resource_group.this.name
-  resource_group_location = azurerm_resource_group.this.location
-  storage_account_name    = module.storage.storage_account_name
-  mssql_connection_string = module.database.mssql_connection_string
+  source                      = "./datafactory"
+  resource_group_name         = azurerm_resource_group.this.name
+  resource_group_location     = azurerm_resource_group.this.location
+  storage_account_name        = module.storage.storage_account_name
+  mssql_connection_string     = module.database.mssql_connection_string
+  onpremise_connection_string = local.onpremise_connection_string
 }
