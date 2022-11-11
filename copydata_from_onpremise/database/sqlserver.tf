@@ -1,9 +1,5 @@
-resource "random_id" "this" {
-  byte_length = 4
-}
-
 resource "azurerm_mssql_server" "this" {
-  name                          = "mssqlserver-${random_id.this.hex}"
+  name                          = "mssqlserver-${var.suffix}"
   location                      = var.resource_group_location
   resource_group_name           = var.resource_group_name
   version                       = "12.0"

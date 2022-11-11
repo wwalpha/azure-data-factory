@@ -1,6 +1,6 @@
 data "azurerm_image" "sqlserver2012" {
-  name                = "win2012-sqlserver2012-adventures"
-  resource_group_name = "DEV_RG"
+  name                = var.azure_vm_image_name
+  resource_group_name = var.azure_vm_image_resource_group
 }
 
 resource "azurerm_virtual_machine" "win2012" {
