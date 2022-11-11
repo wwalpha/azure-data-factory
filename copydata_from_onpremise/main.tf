@@ -94,10 +94,10 @@ module "datafactory" {
 }
 
 # terraform import azurerm_data_factory_dataset_sql_server_table.address /subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369/datasets/PersonAddressTable2
-# terraform import azurerm_data_factory_custom_dataset.address /subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369/datasets/PersonAddressTable2
+# terraform import azurerm_data_factory_custom_dataset.csv /subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory-475be369/datasets/PersonCSV
 
 # /subscriptions/00000000000000000000000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/datasets/example
-# /subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369/datasets/SqlServerTable1
+# /subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369/datasets/PersonCSV2
 
 
 # resource "azurerm_data_factory_dataset_sql_server_table" "address" {
@@ -105,4 +105,27 @@ module "datafactory" {
 #   data_factory_id     = "/subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369"
 #   linked_service_name = "adventureWorks2012"
 #   table_name          = "Person.Address"
+# }
+
+
+# resource "azurerm_data_factory_custom_dataset" "csv" {
+#   name            = "PersonCSV"
+#   type            = "DelimitedText"
+#   data_factory_id = "/subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory-475be369"
+
+#   linked_service {
+#     name = "blob_storage"
+#   }
+
+#   type_properties_json = jsonencode({
+#     columnDelimiter  = ","
+#     escapeChar       = "\\"
+#     firstRowAsHeader = true
+#     nullValue        = ""
+#     quoteChar        = "\""
+#     location = {
+#       type      = "DatasetLocation"
+#       container = "content"
+#     }
+#   })
 # }
