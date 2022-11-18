@@ -3,7 +3,7 @@ terraform {
     organization = "wwalpha"
 
     workspaces {
-      name = "datafactory_copydata_onpremise_sqldatabase"
+      name = "azure-datafactory-copy-datas"
     }
   }
 
@@ -39,6 +39,14 @@ resource "azurerm_resource_group" "this" {
   location = "Japan East"
 }
 
+module "networking" {
+  source = "./networking"
+
+  resource_group_name     = azurerm_resource_group.this.name
+  resource_group_location = azurerm_resource_group.this.location
+  suffix                  = local.suffix
+}
+
 module "database" {
   source = "./database"
 
@@ -46,6 +54,8 @@ module "database" {
   resource_group_location = azurerm_resource_group.this.location
   mssql_admin_username    = var.mssql_admin_username
   mssql_admin_password    = var.mssql_admin_password
+  vnet_id                 = module.networking.vnet_id
+  vnet_subnets            = module.networking.vnet_subnets
   suffix                  = local.suffix
 }
 
@@ -54,6 +64,8 @@ module "storage" {
 
   resource_group_name     = azurerm_resource_group.this.name
   resource_group_location = azurerm_resource_group.this.location
+  vnet_id                 = module.networking.vnet_id
+  vnet_subnets            = module.networking.vnet_subnets
   suffix                  = local.suffix
 }
 
@@ -66,21 +78,13 @@ module "datafactory" {
   source                           = "./datafactory"
   resource_group_name              = azurerm_resource_group.this.name
   resource_group_location          = azurerm_resource_group.this.location
+  vnet_id                          = module.networking.vnet_id
+  vnet_subnets                     = module.networking.vnet_subnets
   storage_account_name             = module.storage.storage_account_name
   mssql_connection_string          = module.database.mssql_connection_string
   onpremise_connection_string      = local.onpremise_connection_string
   is_self_hosted_ir_setup_finished = var.is_self_hosted_ir_setup_finished
   suffix                           = local.suffix
-}
-
-module "networking" {
-  source = "./networking"
-
-  resource_group_name     = azurerm_resource_group.this.name
-  resource_group_location = azurerm_resource_group.this.location
-  mssql_server_id         = module.database.mssql_server_id
-  data_factory_id         = module.datafactory.data_factory_id
-  suffix                  = local.suffix
 }
 
 module "computing" {
