@@ -1,20 +1,15 @@
-data "azurerm_image" "sqlserver2012" {
-  name                = var.azure_vm_image_name
-  resource_group_name = var.azure_vm_image_resource_group
-}
-
-resource "azurerm_virtual_machine" "win2012" {
-  depends_on                       = [azurerm_network_interface_security_group_association.win2012]
-  name                             = "win2012-vm"
+resource "azurerm_virtual_machine" "self_hosted_ir" {
+  depends_on                       = [azurerm_network_interface_security_group_association.self_hosted_ir]
+  name                             = "self-hosted-ir-vm"
   location                         = var.resource_group_location
   resource_group_name              = var.resource_group_name
   vm_size                          = "Standard_B2ms"
   delete_data_disks_on_termination = true
   delete_os_disk_on_termination    = true
-  network_interface_ids            = [azurerm_network_interface.win2012.id]
+  network_interface_ids            = [azurerm_network_interface.self_hosted_ir.id]
 
   os_profile {
-    computer_name  = "SQLServer2012"
+    computer_name  = "SelfHostedIR"
     admin_username = var.azurevm_admin_username
     admin_password = var.azurevm_admin_password
   }
@@ -26,7 +21,7 @@ resource "azurerm_virtual_machine" "win2012" {
   }
 
   storage_os_disk {
-    name              = "win2012_sql2012"
+    name              = "SelfHostedIR"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "StandardSSD_LRS"
@@ -34,6 +29,9 @@ resource "azurerm_virtual_machine" "win2012" {
   }
 
   storage_image_reference {
-    id = data.azurerm_image.sqlserver2012.id
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2019-datacenter-gensecond"
+    version   = "latest"
   }
 }

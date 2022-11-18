@@ -26,7 +26,7 @@ provider "azurerm" {
 }
 
 locals {
-  onpremise_connection_string = "Server=tcp:${module.computing.azure_vm_private_ip_address},1433;Initial Catalog=AdventureWorks2012;Persist Security Info=False;User ID=${var.onpremise_admin_username};Password=${var.onpremise_admin_password};MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;"
+  onpremise_connection_string = "Server=tcp:${module.computing.database_private_ip_address},1433;Initial Catalog=AdventureWorks2012;Persist Security Info=False;User ID=${var.onpremise_admin_username};Password=${var.onpremise_admin_password};MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;"
   suffix                      = random_id.this.hex
 }
 

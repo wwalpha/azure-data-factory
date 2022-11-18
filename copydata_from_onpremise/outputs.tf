@@ -20,6 +20,10 @@ output "self_hosted_ir_secondary_authorization_key" {
   value     = module.datafactory.self_hosted_ir_secondary_authorization_key
 }
 
-output "azure_vm_private_ip_address" {
-  value = module.computing.azure_vm_private_ip_address
+output "database_private_ip_address" {
+  value = module.computing.database_private_ip_address
+}
+
+output "self_hosted_ir_private_ip_address" {
+  value = module.computing.self_hosted_ir_private_ip_address
 }
