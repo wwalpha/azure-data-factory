@@ -57,12 +57,29 @@ module "storage" {
   suffix                  = local.suffix
 }
 
+module "datafactory" {
+  depends_on = [
+    module.storage.storage_account_name,
+    module.database.mssql_connection_string
+  ]
+
+  source                           = "./datafactory"
+  resource_group_name              = azurerm_resource_group.this.name
+  resource_group_location          = azurerm_resource_group.this.location
+  storage_account_name             = module.storage.storage_account_name
+  mssql_connection_string          = module.database.mssql_connection_string
+  onpremise_connection_string      = local.onpremise_connection_string
+  is_self_hosted_ir_setup_finished = var.is_self_hosted_ir_setup_finished
+  suffix                           = local.suffix
+}
+
 module "networking" {
   source = "./networking"
 
   resource_group_name     = azurerm_resource_group.this.name
   resource_group_location = azurerm_resource_group.this.location
   mssql_server_id         = module.database.mssql_server_id
+  data_factory_id         = module.datafactory.data_factory_id
   suffix                  = local.suffix
 }
 
@@ -80,55 +97,51 @@ module "computing" {
   suffix                        = local.suffix
 }
 
-module "datafactory" {
-  depends_on = [
-    module.storage.storage_account_name,
-    module.database.mssql_connection_string
-  ]
 
-  source                           = "./datafactory"
-  resource_group_name              = azurerm_resource_group.this.name
-  resource_group_location          = azurerm_resource_group.this.location
-  storage_account_name             = module.storage.storage_account_name
-  mssql_connection_string          = module.database.mssql_connection_string
-  onpremise_connection_string      = local.onpremise_connection_string
-  is_self_hosted_ir_setup_finished = var.is_self_hosted_ir_setup_finished
-  suffix                           = local.suffix
-}
 
 # terraform import azurerm_data_factory_dataset_sql_server_table.address /subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369/datasets/PersonAddressTable2
 # terraform import azurerm_data_factory_custom_dataset.csv /subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory-475be369/datasets/PersonCSV
 
-# /subscriptions/00000000000000000000000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/datasets/example
-# /subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369/datasets/PersonCSV2
+# resource "azurerm_private_endpoint" "datafactory" {
+#   name                = "datafactory_endpoint"
+#   location            = azurerm_resource_group.this.location
+#   resource_group_name = azurerm_resource_group.this.name
+#   subnet_id           = "azurerm_subnet.subnet1.id"
 
-
-# resource "azurerm_data_factory_dataset_sql_server_table" "address" {
-#   name                = "PersonAddressTable2"
-#   data_factory_id     = "/subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369"
-#   linked_service_name = "adventureWorks2012"
-#   table_name          = "Person.Address"
-# }
-
-
-# resource "azurerm_data_factory_custom_dataset" "csv" {
-#   name            = "PersonCSV"
-#   type            = "DelimitedText"
-#   data_factory_id = "/subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory-475be369"
-
-#   linked_service {
-#     name = "blob_storage"
+#   private_service_connection {
+#     name                           = "mssql_endpoint"
+#     private_connection_resource_id = "var.mssql_server_id"
+#     is_manual_connection           = false
+#     subresource_names              = ["sqlServer"]
 #   }
 
-#   type_properties_json = jsonencode({
-#     columnDelimiter  = ","
-#     escapeChar       = "\\"
-#     firstRowAsHeader = true
-#     nullValue        = ""
-#     quoteChar        = "\""
-#     location = {
-#       type      = "DatasetLocation"
-#       container = "content"
-#     }
-#   })
+#   # private_dns_zone_group {
+#   #   name = "default"
+#   #   private_dns_zone_ids = [
+#   #     azurerm_private_dns_zone.private_link.id
+#   #   ]
+#   # }
 # }
+
+# resource "azurerm_private_endpoint" "datafactory" {
+#   name                = "datafactory"
+#   location            = azurerm_resource_group.this.location
+#   resource_group_name = azurerm_resource_group.this.name
+#   subnet_id           = "/subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.Network/virtualNetworks/app-vnet/subnets/subnet1"
+
+#   private_service_connection {
+#     name                           = "datafactory"
+#     private_connection_resource_id = module.database.mssql_server_id
+#     is_manual_connection           = false
+#     # subresource_names    = ["sqlServer"]
+#   }
+
+#   private_dns_zone_group {
+#     name = "default"
+#     private_dns_zone_ids = [
+#       "/subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.Network/privateDnsZones/privatelink.database.windows.net"
+#     ]
+#   }
+# }
+
+# terraform import azurerm_private_endpoint.datafactory /subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.Network/privateEndpoints/portal-endpoint
