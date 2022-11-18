@@ -1,6 +1,6 @@
 resource "azurerm_virtual_machine" "self_hosted_ir" {
   depends_on                       = [azurerm_network_interface_security_group_association.self_hosted_ir]
-  name                             = "self-hosted-ir-vm"
+  name                             = "self-hosted-ir-${var.suffix}"
   location                         = var.resource_group_location
   resource_group_name              = var.resource_group_name
   vm_size                          = "Standard_B2ms"

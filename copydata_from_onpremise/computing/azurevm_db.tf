@@ -5,7 +5,7 @@ data "azurerm_image" "sqlserver2012" {
 
 resource "azurerm_virtual_machine" "database" {
   depends_on                       = [azurerm_network_interface_security_group_association.database]
-  name                             = "database-vm"
+  name                             = "database-${var.suffix}"
   location                         = var.resource_group_location
   resource_group_name              = var.resource_group_name
   vm_size                          = "Standard_B2ms"

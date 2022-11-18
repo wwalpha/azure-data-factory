@@ -11,3 +11,5 @@ variable "azurevm_admin_password" {}
 variable "azure_vm_image_name" {}
 
 variable "azure_vm_image_resource_group" {}
+
+variable "suffix" {}

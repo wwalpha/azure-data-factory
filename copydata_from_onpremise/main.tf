@@ -63,6 +63,7 @@ module "networking" {
   resource_group_name     = azurerm_resource_group.this.name
   resource_group_location = azurerm_resource_group.this.location
   mssql_server_id         = module.database.mssql_server_id
+  suffix                  = local.suffix
 }
 
 module "computing" {
@@ -75,6 +76,7 @@ module "computing" {
   azurevm_admin_password        = var.azurevm_admin_password
   azure_vm_image_name           = var.azure_vm_image_name
   azure_vm_image_resource_group = var.azure_vm_image_resource_group
+  suffix                        = local.suffix
 }
 
 module "datafactory" {
