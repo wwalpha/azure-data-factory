@@ -74,8 +74,9 @@ module "computing" {
   vnet_subnets                  = module.networking.vnet_subnets
   azurevm_admin_username        = var.azurevm_admin_username
   azurevm_admin_password        = var.azurevm_admin_password
-  azure_vm_image_name           = var.azure_vm_image_name
   azure_vm_image_resource_group = var.azure_vm_image_resource_group
+  azure_vm_image_database       = var.azure_vm_image_database
+  azure_vm_image_self_hosted_ir = var.azure_vm_image_self_hosted_ir
   suffix                        = local.suffix
 }
 

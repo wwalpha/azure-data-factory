@@ -10,8 +10,12 @@ variable "onpremise_admin_username" {}
 
 variable "onpremise_admin_password" {}
 
-variable "azure_vm_image_name" {
+variable "azure_vm_image_database" {
   default = "win2012-sqlserver2012-adventuresV2"
+}
+
+variable "azure_vm_image_self_hosted_ir" {
+  default = "win2019-self-hosted-ir"
 }
 
 variable "azure_vm_image_resource_group" {

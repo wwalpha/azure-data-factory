@@ -1,6 +1,7 @@
 # azure-data-factory
 
-
+## Demonstrate
+- [Copy data from onpremise to Azure SQL database and Azure Storage via DataFactory](./copydata_from_onpremise/README.md)
 
 ## Changing a Data Factory Integration Runtime Registration Key
 - From the machine hosting the IR, open the Windows PowerShell ISE as Administrator

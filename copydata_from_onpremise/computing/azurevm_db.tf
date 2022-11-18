@@ -1,5 +1,5 @@
-data "azurerm_image" "sqlserver2012" {
-  name                = var.azure_vm_image_name
+data "azurerm_image" "database" {
+  name                = var.azure_vm_image_database
   resource_group_name = var.azure_vm_image_resource_group
 }
 
@@ -26,7 +26,7 @@ resource "azurerm_virtual_machine" "database" {
   }
 
   storage_os_disk {
-    name              = "win2012_sql2012"
+    name              = "database${var.suffix}"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "StandardSSD_LRS"
@@ -34,6 +34,6 @@ resource "azurerm_virtual_machine" "database" {
   }
 
   storage_image_reference {
-    id = data.azurerm_image.sqlserver2012.id
+    id = data.azurerm_image.database.id
   }
 }

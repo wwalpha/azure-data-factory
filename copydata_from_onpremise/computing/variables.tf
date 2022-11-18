@@ -8,7 +8,9 @@ variable "azurevm_admin_username" {}
 
 variable "azurevm_admin_password" {}
 
-variable "azure_vm_image_name" {}
+variable "azure_vm_image_database" {}
+
+variable "azure_vm_image_self_hosted_ir" {}
 
 variable "azure_vm_image_resource_group" {}
 

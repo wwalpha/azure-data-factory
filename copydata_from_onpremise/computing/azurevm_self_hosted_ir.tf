@@ -1,3 +1,8 @@
+data "azurerm_image" "self_hosted_ir" {
+  name                = var.azure_vm_image_self_hosted_ir
+  resource_group_name = var.azure_vm_image_resource_group
+}
+
 resource "azurerm_virtual_machine" "self_hosted_ir" {
   depends_on                       = [azurerm_network_interface_security_group_association.self_hosted_ir]
   name                             = "self-hosted-ir-${var.suffix}"
@@ -21,7 +26,7 @@ resource "azurerm_virtual_machine" "self_hosted_ir" {
   }
 
   storage_os_disk {
-    name              = "SelfHostedIR"
+    name              = "shir${var.suffix}"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "StandardSSD_LRS"
@@ -29,9 +34,6 @@ resource "azurerm_virtual_machine" "self_hosted_ir" {
   }
 
   storage_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2019-datacenter-gensecond"
-    version   = "latest"
+    id = data.azurerm_image.self_hosted_ir.id
   }
 }
