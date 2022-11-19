@@ -9,7 +9,7 @@ resource "azurerm_network_security_rule" "database" {
   priority                    = 100
   direction                   = "Outbound"
   access                      = "Deny"
-  protocol                    = "Tcp"
+  protocol                    = "*"
   source_port_range           = "*"
   destination_port_range      = "*"
   source_address_prefix       = "*"
@@ -47,7 +47,7 @@ resource "azurerm_network_security_rule" "self_hosted_ir" {
   priority                    = 100
   direction                   = "Outbound"
   access                      = "Deny"
-  protocol                    = "Tcp"
+  protocol                    = "*"
   source_port_range           = "*"
   destination_port_range      = "*"
   source_address_prefix       = "*"
