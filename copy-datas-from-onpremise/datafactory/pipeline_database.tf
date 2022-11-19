@@ -23,6 +23,13 @@ resource "azurerm_data_factory_pipeline" "database" {
             referenceName = azurerm_data_factory_custom_dataset.sqldatabase[0].name
           }
         ]
+        policy = {
+          retry                  = 0
+          retryIntervalInSeconds = 30
+          secureInput            = false
+          secureOutput           = false
+          timeout                = "0.12:00:00"
+        }
         typeProperties = {
           source = {
             type            = "SqlServerSource"
@@ -30,7 +37,9 @@ resource "azurerm_data_factory_pipeline" "database" {
             partitionOption = "None"
           }
           sink = {
-            type = "AzureSqlSink",
+            type                  = "AzureSqlSink",
+            sqlWriterUseTableLock = false,
+            writeBehavior         = "insert"
           },
           enableStaging = false,
           translator = {

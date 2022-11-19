@@ -25,15 +25,6 @@ provider "azurerm" {
   use_msi = true
 }
 
-locals {
-  onpremise_connection_string = "Server=tcp:${module.computing.database_private_ip_address},1433;Initial Catalog=AdventureWorks2012;Persist Security Info=False;User ID=${var.onpremise_admin_username};Password=${var.onpremise_admin_password};MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;"
-  suffix                      = random_id.this.hex
-}
-
-resource "random_id" "this" {
-  byte_length = 4
-}
-
 resource "azurerm_resource_group" "this" {
   name     = "DF_CD_RG"
   location = "Japan East"
@@ -76,6 +67,7 @@ module "datafactory" {
   ]
 
   source                           = "./datafactory"
+  tenant_id                        = local.tenant_id
   resource_group_name              = azurerm_resource_group.this.name
   resource_group_location          = azurerm_resource_group.this.location
   vnet_id                          = module.networking.vnet_id

@@ -1,4 +1,4 @@
-resource "azurerm_data_factory_pipeline" "copy_table_to_storage" {
+resource "azurerm_data_factory_pipeline" "storage" {
   depends_on = [
     azurerm_data_factory_custom_dataset.person,
     azurerm_data_factory_custom_dataset.csv
