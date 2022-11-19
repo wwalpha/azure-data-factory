@@ -8,7 +8,7 @@ resource "azurerm_private_endpoint" "storage" {
     name                           = "storage_endpoint"
     private_connection_resource_id = azurerm_storage_account.this.id
     is_manual_connection           = false
-    subresource_names              = ["storage"]
+    subresource_names              = ["blob"]
   }
 
   private_dns_zone_group {
