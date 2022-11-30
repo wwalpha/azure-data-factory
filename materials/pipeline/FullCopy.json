@@ -137,13 +137,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "PersonSrc",
+						"referenceName": "Person_Person",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "PersonDest",
+						"referenceName": "Person_NewPerson",
 						"type": "DatasetReference"
 					}
 				]
