@@ -1,10 +1,7 @@
 terraform {
-  backend "remote" {
-    organization = "wwalpha"
 
-    workspaces {
-      name = "azure-datafactory-copy-datas"
-    }
+  backend "local" {
+    path = "./states/terraform.tfstate"
   }
 
   required_providers {
@@ -26,8 +23,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "this" {
-  name     = "DF_CD_RG"
-  location = "Japan East"
+  name     = "${var.resource_group_name}-${local.suffix}"
+  location = var.resource_group_location
 }
 
 module "networking" {
@@ -92,52 +89,3 @@ module "computing" {
   azure_vm_image_self_hosted_ir = var.azure_vm_image_self_hosted_ir
   suffix                        = local.suffix
 }
-
-
-
-# terraform import azurerm_data_factory_dataset_sql_server_table.address /subscriptions/cda6bd1cc03b40b5a2119b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory475be369/datasets/PersonAddressTable2
-# terraform import azurerm_data_factory_custom_dataset.csv /subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.DataFactory/factories/datafactory-475be369/datasets/PersonCSV
-
-# resource "azurerm_private_endpoint" "datafactory" {
-#   name                = "datafactory_endpoint"
-#   location            = azurerm_resource_group.this.location
-#   resource_group_name = azurerm_resource_group.this.name
-#   subnet_id           = "azurerm_subnet.subnet1.id"
-
-#   private_service_connection {
-#     name                           = "mssql_endpoint"
-#     private_connection_resource_id = "var.mssql_server_id"
-#     is_manual_connection           = false
-#     subresource_names              = ["sqlServer"]
-#   }
-
-#   # private_dns_zone_group {
-#   #   name = "default"
-#   #   private_dns_zone_ids = [
-#   #     azurerm_private_dns_zone.private_link.id
-#   #   ]
-#   # }
-# }
-
-# resource "azurerm_private_endpoint" "datafactory" {
-#   name                = "datafactory"
-#   location            = azurerm_resource_group.this.location
-#   resource_group_name = azurerm_resource_group.this.name
-#   subnet_id           = "/subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.Network/virtualNetworks/app-vnet/subnets/subnet1"
-
-#   private_service_connection {
-#     name                           = "datafactory"
-#     private_connection_resource_id = module.database.mssql_server_id
-#     is_manual_connection           = false
-#     # subresource_names    = ["sqlServer"]
-#   }
-
-#   private_dns_zone_group {
-#     name = "default"
-#     private_dns_zone_ids = [
-#       "/subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.Network/privateDnsZones/privatelink.database.windows.net"
-#     ]
-#   }
-# }
-
-# terraform import azurerm_private_endpoint.datafactory /subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/DF_CD_RG/providers/Microsoft.Network/privateEndpoints/portal-endpoint

@@ -10,8 +10,16 @@ variable "onpremise_admin_username" {}
 
 variable "onpremise_admin_password" {}
 
+variable "resource_group_name" {
+  default = "database-sync-rg"
+}
+
+variable "resource_group_location" {
+  default = "Japan East"
+}
+
 variable "azure_vm_image_database" {
-  default = "win2012-sqlserver2012-adventuresV2"
+  default = "win2012-sqlserver2012-adventures-v3"
 }
 
 variable "azure_vm_image_self_hosted_ir" {
@@ -23,5 +31,5 @@ variable "azure_vm_image_resource_group" {
 }
 
 variable "is_self_hosted_ir_setup_finished" {
-  default = true
+  default = false
 }
