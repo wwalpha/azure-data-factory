@@ -11,3 +11,5 @@ variable "mssql_admin_username" {}
 variable "mssql_admin_password" {}
 
 variable "suffix" {}
+
+variable "my_client_ip" {}

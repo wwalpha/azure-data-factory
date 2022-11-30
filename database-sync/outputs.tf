@@ -27,3 +27,7 @@ output "database_private_ip_address" {
 output "self_hosted_ir_private_ip_address" {
   value = module.computing.self_hosted_ir_private_ip_address
 }
+
+output "azure_database_hostname" {
+  value = "${module.database.mssql_server_name}.database.windows.net"
+}

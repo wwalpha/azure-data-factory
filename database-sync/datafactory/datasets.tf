@@ -1,20 +1,20 @@
-resource "azurerm_data_factory_custom_dataset" "csv" {
-  name            = "PersonCSV"
-  type            = "DelimitedText"
-  data_factory_id = azurerm_data_factory.this.id
+# resource "azurerm_data_factory_custom_dataset" "csv" {
+#   name            = "PersonCSV"
+#   type            = "DelimitedText"
+#   data_factory_id = azurerm_data_factory.this.id
 
-  linked_service {
-    name = azurerm_data_factory_linked_service_azure_blob_storage.this.name
-  }
+#   linked_service {
+#     name = azurerm_data_factory_linked_service_azure_blob_storage.this.name
+#   }
 
-  type_properties_json = jsonencode({
-    firstRowAsHeader = true
-    location = {
-      type      = "DatasetLocation"
-      container = "content"
-    }
-  })
-}
+#   type_properties_json = jsonencode({
+#     firstRowAsHeader = true
+#     location = {
+#       type      = "DatasetLocation"
+#       container = "content"
+#     }
+#   })
+# }
 
 
 resource "azurerm_data_factory_custom_dataset" "person" {

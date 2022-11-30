@@ -17,6 +17,10 @@ provider "azurerm" {
     resource_group {
       prevent_deletion_if_contains_resources = false
     }
+
+    key_vault {
+      purge_soft_delete_on_destroy = true
+    }
   }
 
   use_msi = true
@@ -45,6 +49,7 @@ module "database" {
   vnet_id                 = module.networking.vnet_id
   vnet_subnets            = module.networking.vnet_subnets
   suffix                  = local.suffix
+  my_client_ip            = var.my_client_ip
 }
 
 module "storage" {
