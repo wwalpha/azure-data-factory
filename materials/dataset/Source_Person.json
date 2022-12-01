@@ -5,9 +5,6 @@
 			"referenceName": "AdventureWorks2012",
 			"type": "LinkedServiceReference"
 		},
-		"folder": {
-			"name": "Destination"
-		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [
