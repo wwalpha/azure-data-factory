@@ -1,12 +1,12 @@
 {
-	"name": "Person_Person",
+	"name": "Source_Person",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AdventureWorks2012",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "Source"
+			"name": "Destination"
 		},
 		"annotations": [],
 		"type": "SqlServerTable",

@@ -7,10 +7,6 @@
 		"typeProperties": {
 			"connectionString": "integrated security=False;data source=10.0.1.5;initial catalog=AdventureWorks2012;user id=sa",
 			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkODQwZDI5NC1lYTkwLTQwODMtOWYxOS1kZWFlOTIxNmY3NTIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
-		},
-		"connectVia": {
-			"referenceName": "SelfHostedIR",
-			"type": "IntegrationRuntimeReference"
 		}
 	}
 }

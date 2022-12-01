@@ -1,5 +1,5 @@
 {
-	"name": "FullCopy",
+	"name": "CopyFullDatasWithAutoCreateTable",
 	"properties": {
 		"activities": [
 			{
@@ -137,7 +137,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Person_Person",
+						"referenceName": "Source_Person",
 						"type": "DatasetReference"
 					}
 				],
