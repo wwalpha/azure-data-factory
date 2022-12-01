@@ -1,5 +1,5 @@
 {
-	"name": "2_CopyFullDatasWithColumnMapping",
+	"name": "02_FullDatasWithColumnMapping",
 	"properties": {
 		"activities": [
 			{
