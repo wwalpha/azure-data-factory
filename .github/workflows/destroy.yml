@@ -1,4 +1,4 @@
-name: Environment Destroy
+name: Destroy
 
 on:
   workflow_dispatch:

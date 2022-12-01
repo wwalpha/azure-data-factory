@@ -1,12 +1,11 @@
-name: Environment Provisioning
+name: Provisioning
 
 on:
   workflow_dispatch:
-
-inputs:
-  my_client_ip:
-    required: false
-    type: string
+    inputs:
+      my_client_ip:
+        required: true
+        type: string
 
 jobs:
   Terraform:
