@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Person",
+				"name": "Product",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -26,7 +26,7 @@
 						"upsertSettings": {
 							"useTempDB": true,
 							"keys": [
-								"BusinessEntityID"
+								"ProductID"
 							]
 						},
 						"sqlWriterUseTableLock": false,
@@ -38,134 +38,302 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "BusinessEntityID",
+									"name": "ProductID",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "BusinessEntityID",
+									"name": "ProductID",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "PersonType",
+									"name": "Name",
 									"type": "String",
-									"physicalType": "nchar"
+									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "PersonType",
+									"name": "Name",
 									"type": "String",
-									"physicalType": "nchar"
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "NameStyle",
+									"name": "ProductNumber",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "ProductNumber",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "MakeFlag",
 									"type": "Boolean",
 									"physicalType": "bit"
 								},
 								"sink": {
-									"name": "NameStyle",
+									"name": "MakeFlag",
 									"type": "Boolean",
 									"physicalType": "bit"
 								}
 							},
 							{
 								"source": {
-									"name": "Title",
+									"name": "FinishedGoodsFlag",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "FinishedGoodsFlag",
+									"type": "Boolean",
+									"physicalType": "bit"
+								}
+							},
+							{
+								"source": {
+									"name": "Color",
 									"type": "String",
 									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "Title",
+									"name": "Color",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "FirstName",
+									"name": "SafetyStockLevel",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "SafetyStockLevel",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "ReorderPoint",
+									"type": "Int16",
+									"physicalType": "smallint"
+								},
+								"sink": {
+									"name": "ReorderPoint",
+									"type": "Int16",
+									"physicalType": "smallint"
+								}
+							},
+							{
+								"source": {
+									"name": "StandardCost",
+									"type": "Decimal",
+									"physicalType": "money",
+									"scale": 4,
+									"precision": 19
+								},
+								"sink": {
+									"name": "StandardCost",
+									"type": "Decimal",
+									"physicalType": "money",
+									"scale": 4,
+									"precision": 19
+								}
+							},
+							{
+								"source": {
+									"name": "ListPrice",
+									"type": "Decimal",
+									"physicalType": "money",
+									"scale": 4,
+									"precision": 19
+								},
+								"sink": {
+									"name": "ListPrice",
+									"type": "Decimal",
+									"physicalType": "money",
+									"scale": 4,
+									"precision": 19
+								}
+							},
+							{
+								"source": {
+									"name": "Size",
 									"type": "String",
 									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "FirstName",
+									"name": "Size",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "MiddleName",
+									"name": "SizeUnitMeasureCode",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "nchar"
 								},
 								"sink": {
-									"name": "MiddleName",
+									"name": "SizeUnitMeasureCode",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "nchar"
 								}
 							},
 							{
 								"source": {
-									"name": "LastName",
+									"name": "WeightUnitMeasureCode",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "nchar"
 								},
 								"sink": {
-									"name": "LastName",
+									"name": "WeightUnitMeasureCode",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "nchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Suffix",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"name": "Weight",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 8
 								},
 								"sink": {
-									"name": "Suffix",
-									"type": "String",
-									"physicalType": "nvarchar"
+									"name": "Weight",
+									"type": "Decimal",
+									"physicalType": "decimal",
+									"scale": 2,
+									"precision": 8
 								}
 							},
 							{
 								"source": {
-									"name": "EmailPromotion",
+									"name": "DaysToManufacture",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
-									"name": "EmailPromotion",
+									"name": "DaysToManufacture",
 									"type": "Int32",
 									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "AdditionalContactInfo",
+									"name": "ProductLine",
 									"type": "String",
-									"physicalType": "xml"
+									"physicalType": "nchar"
 								},
 								"sink": {
-									"name": "AdditionalContactInfo",
+									"name": "ProductLine",
 									"type": "String",
-									"physicalType": "xml"
+									"physicalType": "nchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Demographics",
+									"name": "Class",
 									"type": "String",
-									"physicalType": "xml"
+									"physicalType": "nchar"
 								},
 								"sink": {
-									"name": "Demographics",
+									"name": "Class",
 									"type": "String",
-									"physicalType": "xml"
+									"physicalType": "nchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Style",
+									"type": "String",
+									"physicalType": "nchar"
+								},
+								"sink": {
+									"name": "Style",
+									"type": "String",
+									"physicalType": "nchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductSubcategoryID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductSubcategoryID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "ProductModelID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "ProductModelID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "SellStartDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "SellStartDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "SellEndDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "SellEndDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "DiscontinuedDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "DiscontinuedDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								}
+							},
+							{
+								"source": {
+									"name": "rowguid",
+									"type": "Guid",
+									"physicalType": "uniqueidentifier"
+								},
+								"sink": {
+									"name": "rowguid",
+									"type": "Guid",
+									"physicalType": "uniqueidentifier"
 								}
 							},
 							{
@@ -190,13 +358,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Source_Person",
+						"referenceName": "Source_Product",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Target_Person",
+						"referenceName": "Target_Product",
 						"type": "DatasetReference"
 					}
 				]
