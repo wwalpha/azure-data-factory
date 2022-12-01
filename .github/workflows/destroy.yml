@@ -3,11 +3,6 @@ name: Destroy
 on:
   workflow_dispatch:
 
-inputs:
-  my_ip_address:
-    required: false
-    type: string
-
 jobs:
   Terraform:
     runs-on: ubuntu-latest
@@ -38,5 +33,4 @@ jobs:
       - name: Apply Terraform
         run: |
           terraform init
-          terraform plan -out=terraform -compact-warnings
-          terraform apply "terraform"
+          terraform apply -destroy -auto-approve
