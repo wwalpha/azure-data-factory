@@ -159,30 +159,6 @@
 							},
 							{
 								"source": {
-									"name": "AdditionalContactInfo",
-									"type": "String",
-									"physicalType": "xml"
-								},
-								"sink": {
-									"name": "AdditionalContactInfo",
-									"type": "String",
-									"physicalType": "xml"
-								}
-							},
-							{
-								"source": {
-									"name": "Demographics",
-									"type": "String",
-									"physicalType": "xml"
-								},
-								"sink": {
-									"name": "Demographics",
-									"type": "String",
-									"physicalType": "xml"
-								}
-							},
-							{
-								"source": {
 									"name": "rowguid",
 									"type": "Guid",
 									"physicalType": "uniqueidentifier"
