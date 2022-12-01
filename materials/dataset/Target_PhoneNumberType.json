@@ -1,0 +1,32 @@
+{
+	"name": "Target_PhoneNumberType",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSQLDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "PhoneNumberTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "Person",
+			"table": "PhoneNumberType"
+		}
+	}
+}
