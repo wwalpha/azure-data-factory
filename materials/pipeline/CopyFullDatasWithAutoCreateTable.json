@@ -40,7 +40,7 @@
 								"sink": {
 									"name": "BusinessEntityID",
 									"type": "Int32",
-									"physicalType": "int"
+									"physicalType": "Int32"
 								}
 							},
 							{
@@ -52,7 +52,19 @@
 								"sink": {
 									"name": "PersonType",
 									"type": "String",
-									"physicalType": "nchar"
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "NameStyle",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "NameStyle",
+									"type": "Boolean",
+									"physicalType": "Boolean"
 								}
 							},
 							{
@@ -64,7 +76,7 @@
 								"sink": {
 									"name": "Title",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "String"
 								}
 							},
 							{
@@ -76,7 +88,7 @@
 								"sink": {
 									"name": "FirstName",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "String"
 								}
 							},
 							{
@@ -88,7 +100,7 @@
 								"sink": {
 									"name": "MiddleName",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "String"
 								}
 							},
 							{
@@ -100,7 +112,7 @@
 								"sink": {
 									"name": "LastName",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "String"
 								}
 							},
 							{
@@ -112,7 +124,7 @@
 								"sink": {
 									"name": "Suffix",
 									"type": "String",
-									"physicalType": "nvarchar"
+									"physicalType": "String"
 								}
 							},
 							{
@@ -124,7 +136,43 @@
 								"sink": {
 									"name": "EmailPromotion",
 									"type": "Int32",
-									"physicalType": "int"
+									"physicalType": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "AdditionalContactInfo",
+									"type": "String",
+									"physicalType": "xml"
+								},
+								"sink": {
+									"name": "AdditionalContactInfo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Demographics",
+									"type": "String",
+									"physicalType": "xml"
+								},
+								"sink": {
+									"name": "Demographics",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ModifiedDate",
+									"type": "DateTime",
+									"physicalType": "datetime"
+								},
+								"sink": {
+									"name": "ModifiedDate",
+									"type": "DateTime",
+									"physicalType": "DateTime"
 								}
 							}
 						],
@@ -143,7 +191,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Person_NewPerson",
+						"referenceName": "Target_NewPerson",
 						"type": "DatasetReference"
 					}
 				]
