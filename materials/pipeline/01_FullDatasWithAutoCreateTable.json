@@ -1,5 +1,5 @@
 {
-	"name": "1_FullDatasWithAutoCreateTable",
+	"name": "01_FullDatasWithAutoCreateTable",
 	"properties": {
 		"activities": [
 			{
