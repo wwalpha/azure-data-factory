@@ -1,5 +1,5 @@
 {
-	"name": "CopyModifiedRows",
+	"name": "03_ModifiedRows",
 	"properties": {
 		"activities": [
 			{
