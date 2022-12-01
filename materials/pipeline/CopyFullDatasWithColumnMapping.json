@@ -26,7 +26,7 @@
 						"upsertSettings": {
 							"useTempDB": true,
 							"keys": [
-								"LocationID"
+								"BusinessEntityID"
 							]
 						},
 						"sqlWriterUseTableLock": false,
@@ -38,58 +38,146 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "LocationID",
-									"type": "Int16",
-									"physicalType": "smallint"
+									"name": "BusinessEntityID",
+									"type": "Int32",
+									"physicalType": "int"
 								},
 								"sink": {
-									"name": "LocationID",
-									"type": "Int16",
-									"physicalType": "smallint"
+									"name": "BusinessEntityID",
+									"type": "Int32",
+									"physicalType": "int"
 								}
 							},
 							{
 								"source": {
-									"name": "Name",
+									"name": "PersonType",
+									"type": "String",
+									"physicalType": "nchar"
+								},
+								"sink": {
+									"name": "PersonType",
+									"type": "String",
+									"physicalType": "nchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NameStyle",
+									"type": "Boolean",
+									"physicalType": "bit"
+								},
+								"sink": {
+									"name": "NameStyle",
+									"type": "Boolean",
+									"physicalType": "bit"
+								}
+							},
+							{
+								"source": {
+									"name": "Title",
 									"type": "String",
 									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "Name",
+									"name": "Title",
 									"type": "String",
 									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "CostRate",
-									"type": "Decimal",
-									"physicalType": "smallmoney",
-									"scale": 4,
-									"precision": 10
+									"name": "FirstName",
+									"type": "String",
+									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "CostRate",
-									"type": "Decimal",
-									"physicalType": "smallmoney",
-									"scale": 4,
-									"precision": 10
+									"name": "FirstName",
+									"type": "String",
+									"physicalType": "nvarchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Availability",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
+									"name": "MiddleName",
+									"type": "String",
+									"physicalType": "nvarchar"
 								},
 								"sink": {
-									"name": "Availability",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
+									"name": "MiddleName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LastName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "LastName",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Suffix",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Suffix",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "EmailPromotion",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "EmailPromotion",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "AdditionalContactInfo",
+									"type": "String",
+									"physicalType": "xml"
+								},
+								"sink": {
+									"name": "AdditionalContactInfo",
+									"type": "String",
+									"physicalType": "xml"
+								}
+							},
+							{
+								"source": {
+									"name": "Demographics",
+									"type": "String",
+									"physicalType": "xml"
+								},
+								"sink": {
+									"name": "Demographics",
+									"type": "String",
+									"physicalType": "xml"
+								}
+							},
+							{
+								"source": {
+									"name": "rowguid",
+									"type": "Guid",
+									"physicalType": "uniqueidentifier"
+								},
+								"sink": {
+									"name": "rowguid",
+									"type": "Guid",
+									"physicalType": "uniqueidentifier"
 								}
 							},
 							{
@@ -114,13 +202,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Source_Location",
+						"referenceName": "Source_Person",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Target_Location",
+						"referenceName": "Target_Person",
 						"type": "DatasetReference"
 					}
 				]
