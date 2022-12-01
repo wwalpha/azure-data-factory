@@ -1,5 +1,5 @@
 {
-	"name": "Target_Person",
+	"name": "Target_NewPerson",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSQLDatabase",
