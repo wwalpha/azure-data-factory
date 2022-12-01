@@ -1,5 +1,5 @@
 {
-	"name": "CopyFullDatasWithAutoCreateTable",
+	"name": "1_CopyFullDatasWithAutoCreateTable",
 	"properties": {
 		"activities": [
 			{
