@@ -6,6 +6,10 @@ on:
       my_client_ip:
         required: true
         type: string
+      is_create_vpn:
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   Terraform:
@@ -20,6 +24,7 @@ jobs:
       TF_VAR_azurevm_admin_password: ${{ secrets.AZURE_PASSWORD }}
       TF_VAR_sqlserver_admin_password: ${{ secrets.ONPREMISE_PASSWORD }}
       TF_VAR_my_client_ip: ${{ inputs.my_client_ip }}
+      TF_VAR_is_create_vpn_gateway: ${{ inputs.is_create_vpn }}
     defaults:
       run:
         working-directory: terraform
