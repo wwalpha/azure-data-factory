@@ -1,17 +1,17 @@
-variable "azurevm_admin_username" {}
+variable "azurevm_admin_username" {
+  default = "adminuser"
+}
 
-variable "azurevm_admin_password" {}
+variable "mssql_admin_username" {
+  default = "adminuser"
+}
 
-variable "mssql_admin_username" {}
-
-variable "mssql_admin_password" {}
-
-variable "onpremise_admin_username" {}
-
-variable "onpremise_admin_password" {}
+variable "sqlserver_admin_username" {
+  default = "sa"
+}
 
 variable "resource_group_name" {
-  default = "database-sync-rg"
+  default = "database-sync"
 }
 
 variable "resource_group_location" {
@@ -31,9 +31,13 @@ variable "azure_vm_image_resource_group" {
 }
 
 variable "is_self_hosted_ir_setup_finished" {
-  default = true
+  default = false
 }
 
-variable "my_client_ip" {
-  default = "202.32.14.177"
-}
+variable "my_client_ip" {}
+
+variable "azurevm_admin_password" {}
+
+variable "mssql_admin_password" {}
+
+variable "sqlserver_admin_password" {}

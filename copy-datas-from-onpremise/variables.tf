@@ -6,9 +6,9 @@ variable "mssql_admin_username" {}
 
 variable "mssql_admin_password" {}
 
-variable "onpremise_admin_username" {}
+variable "sqlserver_admin_username" {}
 
-variable "onpremise_admin_password" {}
+variable "sqlserver_admin_password" {}
 
 variable "azure_vm_image_database" {
   default = "win2012-sqlserver2012-adventuresV2"
@@ -23,5 +23,5 @@ variable "azure_vm_image_resource_group" {
 }
 
 variable "is_self_hosted_ir_setup_finished" {
-  default = false
+  default = true
 }

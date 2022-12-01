@@ -1,7 +1,10 @@
 terraform {
+  backend "remote" {
+    organization = "wwalpha"
 
-  backend "local" {
-    path = "./states/terraform.tfstate"
+    workspaces {
+      name = "azure-data-factory"
+    }
   }
 
   required_providers {
