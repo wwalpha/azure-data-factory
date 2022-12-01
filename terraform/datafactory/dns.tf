@@ -23,4 +23,3 @@ resource "azurerm_private_dns_zone_virtual_network_link" "datafactory" {
   virtual_network_id    = var.vnet_id
   registration_enabled  = false
 }
-
