@@ -1,0 +1,32 @@
+{
+	"name": "Source_PhoneNumberType",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AdventureWorks2012",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "PhoneNumberTypeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "Person",
+			"table": "PhoneNumberType"
+		}
+	}
+}
