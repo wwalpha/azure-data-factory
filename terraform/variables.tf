@@ -31,5 +31,9 @@ variable "azure_vm_image_resource_group" {
 }
 
 variable "is_self_hosted_ir_setup_finished" {
-  default = false
+  default = true
+}
+
+variable "my_client_ip" {
+  default = "202.32.14.177"
 }
