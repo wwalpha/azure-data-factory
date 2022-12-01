@@ -3,9 +3,8 @@ resource "azurerm_public_ip" "vpngw" {
   location            = var.resource_group_location
   resource_group_name = var.resource_group_name
   allocation_method   = "Dynamic"
+  count               = var.is_create_vpn_gateway ? 1 : 0
 }
-
-data "azurerm_client_config" "this" {}
 
 resource "azurerm_virtual_network_gateway" "this" {
   name                = "vpngw"
@@ -21,7 +20,7 @@ resource "azurerm_virtual_network_gateway" "this" {
 
   ip_configuration {
     name                          = "vnetGatewayConfig"
-    public_ip_address_id          = azurerm_public_ip.vpngw.id
+    public_ip_address_id          = azurerm_public_ip.vpngw[0].id
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = azurerm_subnet.gateway.id
   }
@@ -30,8 +29,10 @@ resource "azurerm_virtual_network_gateway" "this" {
     address_space        = ["172.168.0.0/24"]
     vpn_auth_types       = ["AAD"]
     vpn_client_protocols = ["OpenVPN"]
-    aad_tenant           = "https://login.microsoftonline.com/${data.azurerm_client_config.this.tenant_id}"
+    aad_tenant           = "https://login.microsoftonline.com/${var.tenant_id}"
     aad_audience         = "41b23e61-6c1e-4545-b367-cd054e0ed4b4"
-    aad_issuer           = "https://sts.windows.net/${data.azurerm_client_config.this.tenant_id}/"
+    aad_issuer           = "https://sts.windows.net/${var.tenant_id}/"
   }
+
+  count = var.is_create_vpn_gateway ? 1 : 0
 }

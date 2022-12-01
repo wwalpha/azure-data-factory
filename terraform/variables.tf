@@ -34,6 +34,10 @@ variable "is_self_hosted_ir_setup_finished" {
   default = false
 }
 
+variable "is_create_vpn_gateway" {
+  default = false
+}
+
 variable "my_client_ip" {}
 
 variable "azurevm_admin_password" {}
