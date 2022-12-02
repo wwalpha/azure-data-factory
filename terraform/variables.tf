@@ -35,13 +35,21 @@ variable "is_self_hosted_ir_setup_finished" {
 }
 
 variable "is_create_vpn_gateway" {
-  default = false
+  default = true
 }
 
-variable "my_client_ip" {}
+variable "my_client_ip" {
+  default = "10.10.10.10"
+}
 
-variable "azurevm_admin_password" {}
+variable "azurevm_admin_password" {
+  default = "P@ssw0rdDummy"
+}
 
-variable "mssql_admin_password" {}
+variable "mssql_admin_password" {
+  default = "P@ssw0rdDummy"
+}
 
-variable "sqlserver_admin_password" {}
+variable "sqlserver_admin_password" {
+  default = "P@ssw0rdDummy"
+}
