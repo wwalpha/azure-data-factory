@@ -6,6 +6,8 @@ variable "onpremise_vnet_subnet_id" {}
 
 variable "forwarding_vnet_subnet_id" {}
 
+variable "lb_backend_address_pool_id" {}
+
 variable "azurevm_admin_username" {}
 
 variable "azurevm_admin_password" {}

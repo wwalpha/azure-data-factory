@@ -72,3 +72,26 @@ resource "azurerm_network_interface_security_group_association" "self_hosted_ir"
   network_interface_id      = azurerm_network_interface.self_hosted_ir.id
   network_security_group_id = azurerm_network_security_group.self_hosted_ir.id
 }
+
+resource "azurerm_network_interface" "forward_backend" {
+  name                = "forward-backend-nic"
+  location            = var.resource_group_location
+  resource_group_name = var.resource_group_name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = var.forwarding_vnet_subnet_id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
+
+resource "azurerm_network_security_group" "forward_backend" {
+  name                = "forward-backend-nsg"
+  location            = var.resource_group_location
+  resource_group_name = var.resource_group_name
+}
+
+resource "azurerm_network_interface_security_group_association" "forward_backend" {
+  network_interface_id      = azurerm_network_interface.forward_backend.id
+  network_security_group_id = azurerm_network_security_group.forward_backend.id
+}

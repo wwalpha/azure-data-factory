@@ -5,6 +5,10 @@ resource "azurerm_data_factory" "this" {
   public_network_enabled          = false
   managed_virtual_network_enabled = true
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   lifecycle {
     ignore_changes = [
       github_configuration
