@@ -88,18 +88,18 @@ module "datafactory" {
 }
 
 module "computing" {
-  depends_on = [module.networking]
-  source     = "./computing"
+  source = "./computing"
 
-  resource_group_name           = azurerm_resource_group.this.name
-  resource_group_location       = azurerm_resource_group.this.location
-  onpremise_vnet_subnet_id      = module.networking.onpremise_vnet_subnet_id
-  forwarding_vnet_subnet_id     = module.networking.forwarding_vnet_subnet_id
-  lb_backend_address_pool_id    = module.networking.lb_backend_address_pool_id
-  azurevm_admin_username        = var.azurevm_admin_username
-  azurevm_admin_password        = var.azurevm_admin_password
-  azure_vm_image_resource_group = var.azure_vm_image_resource_group
-  azure_vm_image_database       = var.azure_vm_image_database
-  azure_vm_image_self_hosted_ir = var.azure_vm_image_self_hosted_ir
-  suffix                        = local.suffix
+  resource_group_name             = azurerm_resource_group.this.name
+  resource_group_location         = azurerm_resource_group.this.location
+  onpremise_vnet_subnet_id        = module.networking.onpremise_vnet_subnet_id
+  forwarding_vnet_subnet_id       = module.networking.forwarding_vnet_subnet_id
+  lb_backend_address_pool_id      = module.networking.lb_backend_address_pool_id
+  azurerm_nat_gateway_association = module.networking.azurerm_nat_gateway_association
+  azurevm_admin_username          = var.azurevm_admin_username
+  azurevm_admin_password          = var.azurevm_admin_password
+  azure_vm_image_resource_group   = var.azure_vm_image_resource_group
+  azure_vm_image_database         = var.azure_vm_image_database
+  azure_vm_image_self_hosted_ir   = var.azure_vm_image_self_hosted_ir
+  suffix                          = local.suffix
 }

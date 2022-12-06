@@ -25,3 +25,7 @@ output "lb_private_ip_address" {
 output "onpremise_dns_zone" {
   value = azurerm_private_dns_zone.onpremise.name
 }
+
+output "azurerm_nat_gateway_association" {
+  value = azurerm_subnet_nat_gateway_association.forwarding
+}

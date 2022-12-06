@@ -1,4 +1,5 @@
 resource "azurerm_virtual_machine" "forward_backend" {
+  depends_on            = [var.azurerm_nat_gateway_association]
   name                  = "forward-backend-${var.suffix}"
   location              = var.resource_group_location
   resource_group_name   = var.resource_group_name
