@@ -11,7 +11,7 @@ variable "sqlserver_admin_username" {
 }
 
 variable "resource_group_name" {
-  default = "database-sync"
+  default = "data-factory"
 }
 
 variable "resource_group_location" {
@@ -35,7 +35,7 @@ variable "is_self_hosted_ir_setup_finished" {
 }
 
 variable "is_create_vpn_gateway" {
-  default = true
+  default = false
 }
 
 variable "my_client_ip" {

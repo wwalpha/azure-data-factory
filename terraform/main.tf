@@ -41,30 +41,31 @@ module "networking" {
   resource_group_location = azurerm_resource_group.this.location
   suffix                  = local.suffix
   tenant_id               = local.tenant_id
+  subscription_id         = local.subscription_id
   is_create_vpn_gateway   = var.is_create_vpn_gateway
 }
 
 module "database" {
   source = "./database"
 
-  resource_group_name     = azurerm_resource_group.this.name
-  resource_group_location = azurerm_resource_group.this.location
-  mssql_admin_username    = var.mssql_admin_username
-  mssql_admin_password    = var.mssql_admin_password
-  vnet_id                 = module.networking.vnet_id
-  vnet_subnets            = module.networking.vnet_subnets
-  suffix                  = local.suffix
-  my_client_ip            = var.my_client_ip
+  resource_group_name      = azurerm_resource_group.this.name
+  resource_group_location  = azurerm_resource_group.this.location
+  mssql_admin_username     = var.mssql_admin_username
+  mssql_admin_password     = var.mssql_admin_password
+  onpremise_vnet_id        = module.networking.onpremise_vnet_id
+  onpremise_vnet_subnet_id = module.networking.onpremise_vnet_subnet_id
+  suffix                   = local.suffix
+  my_client_ip             = var.my_client_ip
 }
 
 module "storage" {
   source = "./storage"
 
-  resource_group_name     = azurerm_resource_group.this.name
-  resource_group_location = azurerm_resource_group.this.location
-  vnet_id                 = module.networking.vnet_id
-  vnet_subnets            = module.networking.vnet_subnets
-  suffix                  = local.suffix
+  resource_group_name      = azurerm_resource_group.this.name
+  resource_group_location  = azurerm_resource_group.this.location
+  onpremise_vnet_id        = module.networking.onpremise_vnet_id
+  onpremise_vnet_subnet_id = module.networking.onpremise_vnet_subnet_id
+  suffix                   = local.suffix
 }
 
 module "datafactory" {
@@ -77,8 +78,8 @@ module "datafactory" {
   tenant_id                        = local.tenant_id
   resource_group_name              = azurerm_resource_group.this.name
   resource_group_location          = azurerm_resource_group.this.location
-  vnet_id                          = module.networking.vnet_id
-  vnet_subnets                     = module.networking.vnet_subnets
+  onpremise_vnet_id                = module.networking.onpremise_vnet_id
+  onpremise_vnet_subnet_id         = module.networking.onpremise_vnet_subnet_id
   storage_account_name             = module.storage.storage_account_name
   mssql_connection_string          = module.database.mssql_connection_string
   onpremise_connection_string      = local.onpremise_connection_string
@@ -91,7 +92,8 @@ module "computing" {
 
   resource_group_name           = azurerm_resource_group.this.name
   resource_group_location       = azurerm_resource_group.this.location
-  vnet_subnets                  = module.networking.vnet_subnets
+  onpremise_vnet_subnet_id      = module.networking.onpremise_vnet_subnet_id
+  forwarding_vnet_subnet_id     = module.networking.forwarding_vnet_subnet_id
   azurevm_admin_username        = var.azurevm_admin_username
   azurevm_admin_password        = var.azurevm_admin_password
   azure_vm_image_resource_group = var.azure_vm_image_resource_group

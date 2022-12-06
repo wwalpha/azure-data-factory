@@ -2,7 +2,7 @@ resource "azurerm_private_endpoint" "portal" {
   name                = "portal_endpoint"
   location            = var.resource_group_location
   resource_group_name = var.resource_group_name
-  subnet_id           = var.vnet_subnets[0]
+  subnet_id           = var.onpremise_vnet_subnet_id
 
   private_service_connection {
     name                           = "portal_endpoint"
@@ -28,7 +28,7 @@ resource "azurerm_private_endpoint" "datafactory" {
   name                = "datafactory_endpoint"
   location            = var.resource_group_location
   resource_group_name = var.resource_group_name
-  subnet_id           = var.vnet_subnets[0]
+  subnet_id           = var.onpremise_vnet_subnet_id
 
   private_service_connection {
     name                           = "datafactory_endpoint"

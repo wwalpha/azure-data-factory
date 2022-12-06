@@ -7,7 +7,7 @@ resource "azurerm_storage_account_network_rules" "this" {
   storage_account_id         = data.azurerm_storage_account.this.id
   default_action             = "Deny"
   bypass                     = ["AzureServices"]
-  virtual_network_subnet_ids = [var.vnet_subnets[0]]
+  virtual_network_subnet_ids = [var.onpremise_vnet_subnet_id]
 
   private_link_access {
     endpoint_tenant_id   = var.tenant_id

@@ -25,7 +25,7 @@ resource "azurerm_network_interface" "database" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = var.vnet_subnets[0]
+    subnet_id                     = var.onpremise_vnet_subnet_id
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -63,7 +63,7 @@ resource "azurerm_network_interface" "self_hosted_ir" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = var.vnet_subnets[0]
+    subnet_id                     = var.onpremise_vnet_subnet_id
     private_ip_address_allocation = "Dynamic"
   }
 }

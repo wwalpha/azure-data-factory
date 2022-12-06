@@ -1,7 +1,15 @@
-output "vnet_id" {
-  value = azurerm_virtual_network.this.id
+output "onpremise_vnet_id" {
+  value = azurerm_virtual_network.onpremise.id
 }
 
-output "vnet_subnets" {
-  value = [azurerm_subnet.subnet1.id, azurerm_subnet.subnet2.id]
+output "onpremise_vnet_subnet_id" {
+  value = azurerm_subnet.onpremise_subnet.id
+}
+
+output "forwarding_vnet_id" {
+  value = azurerm_virtual_network.forwarding.id
+}
+
+output "forwarding_vnet_subnet_id" {
+  value = azurerm_subnet.forwarding_subnet.id
 }

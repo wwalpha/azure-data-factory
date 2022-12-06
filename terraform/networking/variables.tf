@@ -6,6 +6,8 @@ variable "suffix" {}
 
 variable "tenant_id" {}
 
+variable "subscription_id" {}
+
 variable "is_create_vpn_gateway" {
 
 }
