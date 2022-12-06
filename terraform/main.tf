@@ -34,15 +34,6 @@ resource "azurerm_resource_group" "this" {
   location = var.resource_group_location
 }
 
-module "security" {
-  source = "./security"
-
-  resource_group_name     = azurerm_resource_group.this.name
-  resource_group_location = azurerm_resource_group.this.location
-  suffix                  = local.suffix
-  tenant_id               = local.tenant_id
-}
-
 module "networking" {
   source = "./networking"
 
@@ -67,6 +58,19 @@ module "database" {
   my_client_ip             = var.my_client_ip
 }
 
+module "security" {
+  source = "./security"
+
+  resource_group_name         = azurerm_resource_group.this.name
+  resource_group_location     = azurerm_resource_group.this.location
+  suffix                      = local.suffix
+  tenant_id                   = local.tenant_id
+  mssql_connection_string     = local.mssql_connection_string
+  mssql_admin_password        = var.mssql_admin_password
+  sqlserver_connection_string = local.sqlserver_connection_string
+  sqlserver_admin_password    = var.sqlserver_admin_password
+}
+
 module "storage" {
   source = "./storage"
 
@@ -80,7 +84,7 @@ module "storage" {
 module "datafactory" {
   depends_on = [
     module.storage.storage_account_name,
-    module.database.mssql_connection_string
+    module.security.key_vault_id
   ]
 
   source                           = "./datafactory"
@@ -90,10 +94,13 @@ module "datafactory" {
   onpremise_vnet_id                = module.networking.onpremise_vnet_id
   onpremise_vnet_subnet_id         = module.networking.onpremise_vnet_subnet_id
   storage_account_name             = module.storage.storage_account_name
-  mssql_connection_string          = module.database.mssql_connection_string
-  onpremise_connection_string      = local.onpremise_connection_string
+  mssql_conn_secret_name           = module.security.mssql_conn_secret_name
+  mssql_passwd_secret_name         = module.security.mssql_conn_secret_psw
+  sqlserver_conn_secret_name       = module.security.sqlserver_conn_secret_name
+  sqlserver_passwd_secret_name     = module.security.sqlserver_conn_secret_psw
   is_self_hosted_ir_setup_finished = var.is_self_hosted_ir_setup_finished
   suffix                           = local.suffix
+  key_vault_id                     = module.security.key_vault_id
 }
 
 module "computing" {

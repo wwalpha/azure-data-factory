@@ -2,8 +2,8 @@ output "database_private_ip_address" {
   value = azurerm_network_interface.database.private_ip_address
 }
 
-output "database_hostname" {
-  value = flatten(azurerm_virtual_machine.database.os_profile.*.computer_name)[0]
+output "sqlserver_database_hostname" {
+  value = lower(flatten(azurerm_virtual_machine.database.os_profile.*.computer_name)[0])
 }
 
 output "self_hosted_ir_private_ip_address" {

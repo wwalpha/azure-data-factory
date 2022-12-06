@@ -13,5 +13,3 @@ variable "mssql_admin_password" {}
 variable "suffix" {}
 
 variable "my_client_ip" {}
-
-variable "key_vault_id" {}

@@ -10,6 +10,6 @@ output "mssql_database_name" {
   value = azurerm_mssql_database.this.name
 }
 
-output "mssql_connection_string_id" {
-  value = azurerm_key_vault_secret.mssql.id
+output "mssql_database_fqdn" {
+  value = azurerm_mssql_server.this.fully_qualified_domain_name
 }
