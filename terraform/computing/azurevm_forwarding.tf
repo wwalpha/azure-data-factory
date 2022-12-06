@@ -23,7 +23,7 @@ resource "azurerm_virtual_machine" "forward_backend" {
     computer_name  = "ForwardBackend"
     admin_username = var.azurevm_admin_username
     admin_password = var.azurevm_admin_password
-    custom_data    = local.user_data
+    custom_data    = base64encode(local.user_data)
   }
 
   os_profile_linux_config {
