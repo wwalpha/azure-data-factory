@@ -1,4 +1,9 @@
 {
 	"name": "datafactory-669dc355",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "true"
+		}
+	},
 	"location": "japaneast"
 }
