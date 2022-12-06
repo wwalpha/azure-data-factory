@@ -3,6 +3,6 @@ secrets*
 states
 node_modules
 yarn.lock
-managedVirtualNetwork/*
-linkedService/*
-integrationRuntime/*
+materials/managedVirtualNetwork/*
+materials/linkedService/*
+materials/integrationRuntime/*
