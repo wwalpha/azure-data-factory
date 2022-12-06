@@ -6,12 +6,13 @@ variable "suffix" {}
 
 variable "tenant_id" {}
 
-variable "sqlserver_connection_string" {}
+variable "sqlserver_conn_string" {}
 
 variable "sqlserver_admin_password" {}
 
-variable "mssql_connection_string" {}
+variable "mssql_conn_string" {}
 
 variable "mssql_admin_password" {}
 
+variable "storage_account_conn_string" {}
 

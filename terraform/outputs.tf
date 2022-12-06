@@ -41,5 +41,6 @@ output "mssql_database_server_name" {
 }
 
 output "sqlserver_database_fqdn" {
-  value = "${module.computing.sqlserver_database_hostname}.${module.networking.onpremise_dns_zone}"
+  sensitive = true
+  value     = "${module.computing.sqlserver_database_hostname}.${module.networking.onpremise_dns_zone}"
 }

@@ -16,10 +16,15 @@ variable "suffix" {}
 
 variable "key_vault_id" {}
 
-variable "mssql_conn_secret_name" {}
+variable "key_vault_secret_mssql_conn" {}
 
-variable "mssql_passwd_secret_name" {}
+variable "key_vault_secret_mssql_passwd" {}
 
-variable "sqlserver_conn_secret_name" {}
+variable "key_vault_secret_sqlserver_conn" {}
 
-variable "sqlserver_passwd_secret_name" {}
+variable "key_vault_secret_sqlserver_passwd" {}
+
+variable "key_vault_secret_sa_conn" {}
+
+variable "mssql_server_id" {}
+

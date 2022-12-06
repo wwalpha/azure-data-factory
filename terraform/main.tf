@@ -58,19 +58,6 @@ module "database" {
   my_client_ip             = var.my_client_ip
 }
 
-module "security" {
-  source = "./security"
-
-  resource_group_name         = azurerm_resource_group.this.name
-  resource_group_location     = azurerm_resource_group.this.location
-  suffix                      = local.suffix
-  tenant_id                   = local.tenant_id
-  mssql_connection_string     = local.mssql_connection_string
-  mssql_admin_password        = var.mssql_admin_password
-  sqlserver_connection_string = local.sqlserver_connection_string
-  sqlserver_admin_password    = var.sqlserver_admin_password
-}
-
 module "storage" {
   source = "./storage"
 
@@ -81,26 +68,43 @@ module "storage" {
   suffix                   = local.suffix
 }
 
+module "security" {
+  source = "./security"
+
+  resource_group_name         = azurerm_resource_group.this.name
+  resource_group_location     = azurerm_resource_group.this.location
+  suffix                      = local.suffix
+  tenant_id                   = local.tenant_id
+  mssql_conn_string           = local.mssql_conn_string
+  mssql_admin_password        = var.mssql_admin_password
+  sqlserver_conn_string       = local.sqlserver_conn_string
+  sqlserver_admin_password    = var.sqlserver_admin_password
+  storage_account_conn_string = module.storage.storage_account_primary_conn_string
+}
+
+
 module "datafactory" {
   depends_on = [
     module.storage.storage_account_name,
     module.security.key_vault_id
   ]
 
-  source                           = "./datafactory"
-  tenant_id                        = local.tenant_id
-  resource_group_name              = azurerm_resource_group.this.name
-  resource_group_location          = azurerm_resource_group.this.location
-  onpremise_vnet_id                = module.networking.onpremise_vnet_id
-  onpremise_vnet_subnet_id         = module.networking.onpremise_vnet_subnet_id
-  storage_account_name             = module.storage.storage_account_name
-  mssql_conn_secret_name           = module.security.mssql_conn_secret_name
-  mssql_passwd_secret_name         = module.security.mssql_conn_secret_psw
-  sqlserver_conn_secret_name       = module.security.sqlserver_conn_secret_name
-  sqlserver_passwd_secret_name     = module.security.sqlserver_conn_secret_psw
-  is_self_hosted_ir_setup_finished = var.is_self_hosted_ir_setup_finished
-  suffix                           = local.suffix
-  key_vault_id                     = module.security.key_vault_id
+  source                            = "./datafactory"
+  tenant_id                         = local.tenant_id
+  resource_group_name               = azurerm_resource_group.this.name
+  resource_group_location           = azurerm_resource_group.this.location
+  onpremise_vnet_id                 = module.networking.onpremise_vnet_id
+  onpremise_vnet_subnet_id          = module.networking.onpremise_vnet_subnet_id
+  storage_account_name              = module.storage.storage_account_name
+  mssql_server_id                   = module.database.mssql_server_id
+  key_vault_id                      = module.security.key_vault_id
+  key_vault_secret_mssql_conn       = module.security.key_vault_secret_mssql_conn
+  key_vault_secret_mssql_passwd     = module.security.key_vault_secret_mssql_psw
+  key_vault_secret_sqlserver_conn   = module.security.key_vault_secret_sqlserver_conn
+  key_vault_secret_sqlserver_passwd = module.security.key_vault_secret_sqlserver_psw
+  key_vault_secret_sa_conn          = module.security.key_vault_secret_sa_conn
+  is_self_hosted_ir_setup_finished  = var.is_self_hosted_ir_setup_finished
+  suffix                            = local.suffix
 }
 
 module "computing" {
