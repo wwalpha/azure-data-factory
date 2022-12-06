@@ -7,6 +7,10 @@
 		"typeProperties": {
 			"connectionString": "DefaultEndpointsProtocol=https;AccountName=storagea7682674;EndpointSuffix=core.windows.net;",
 			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDQxNzAyRjFGLUQ5N0YtNDIzRi1CMEQ0LTRGOTUwM0JDNjkwNF81MDQzMGRiZi1hNWVhLTRmNjctYTBjMC00NzMyNDc5Yjg1NTEiDQp9"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
 		}
 	}
 }
