@@ -6,16 +6,15 @@ output "data_factory_name" {
   value = module.datafactory.data_factory_name
 }
 
+output "self_hosted_ir_primary_authorization_key" {
+  sensitive = true
+  value     = module.datafactory.self_hosted_ir_primary_authorization_key
+}
 
-# output "self_hosted_ir_primary_authorization_key" {
-#   sensitive = true
-#   value     = module.datafactory.self_hosted_ir_primary_authorization_key
-# }
-
-# output "self_hosted_ir_secondary_authorization_key" {
-#   sensitive = true
-#   value     = module.datafactory.self_hosted_ir_secondary_authorization_key
-# }
+output "self_hosted_ir_secondary_authorization_key" {
+  sensitive = true
+  value     = module.datafactory.self_hosted_ir_secondary_authorization_key
+}
 
 output "database_private_ip_address" {
   value = module.computing.database_private_ip_address

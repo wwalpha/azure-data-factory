@@ -1,7 +1,0 @@
-{
-	"name": "AzureSqlDatabase",
-	"properties": {
-		"privateLinkResourceId": "/subscriptions/cda6bd1c-c03b-40b5-a211-9b0bd4583a14/resourceGroups/data-factory-f0b4d46a/providers/Microsoft.Sql/servers/mssqlserver-f0b4d46a",
-		"groupId": "sqlServer"
-	}
-}
