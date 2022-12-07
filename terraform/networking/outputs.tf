@@ -29,3 +29,7 @@ output "onpremise_dns_zone" {
 output "azurerm_nat_gateway_association" {
   value = azurerm_subnet_nat_gateway_association.forwarding
 }
+
+output "pls_id_for_datafactory" {
+  value = azurerm_private_link_service.datafactory.id
+}

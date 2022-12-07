@@ -11,8 +11,3 @@ resource "azurerm_private_link_service" "datafactory" {
     subnet_id = azurerm_subnet.forwarding_subnet.id
   }
 }
-
-data "azurerm_private_link_service_endpoint_connections" "datafactory" {
-  service_id          = azurerm_private_link_service.datafactory.id
-  resource_group_name = var.resource_group_name
-}

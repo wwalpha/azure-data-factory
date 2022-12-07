@@ -30,3 +30,6 @@ variable "key_vault_secret_sa_conn" {}
 
 variable "mssql_server_id" {}
 
+variable "pls_id_for_datafactory" {}
+
+variable "sqlserver_database_fqdn" {}
