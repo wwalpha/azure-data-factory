@@ -8,7 +8,7 @@ resource "azurerm_virtual_machine" "self_hosted_ir" {
   name                             = "self-hosted-ir-${var.suffix}"
   location                         = var.resource_group_location
   resource_group_name              = var.resource_group_name
-  vm_size                          = "Standard_B2ms"
+  vm_size                          = "Standard_B1ms"
   delete_data_disks_on_termination = true
   delete_os_disk_on_termination    = true
   network_interface_ids            = [azurerm_network_interface.self_hosted_ir.id]

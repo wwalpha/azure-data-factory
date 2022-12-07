@@ -1,10 +1,14 @@
 resource "azurerm_virtual_machine" "forward_backend" {
-  depends_on            = [var.azurerm_nat_gateway_association]
+  depends_on = [
+    var.azurerm_nat_gateway_association,
+    azurerm_network_interface_security_group_association.forward_backend
+  ]
+
   name                  = "forward-backend-${var.suffix}"
   location              = var.resource_group_location
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.forward_backend.id]
-  vm_size               = "Standard_B2ms"
+  vm_size               = "Standard_B1ms"
 
   storage_image_reference {
     publisher = "canonical"

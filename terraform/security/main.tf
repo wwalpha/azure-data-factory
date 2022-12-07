@@ -10,18 +10,19 @@ resource "azurerm_key_vault" "this" {
   sku_name                   = "standard"
   soft_delete_retention_days = 7
   purge_protection_enabled   = false
+}
 
-  access_policy {
-    tenant_id = tomap(data.external.account_info.result).tid
-    object_id = tomap(data.external.account_info.result).oid
+resource "azurerm_key_vault_access_policy" "this" {
+  key_vault_id = azurerm_key_vault.this.id
+  tenant_id    = tomap(data.external.account_info.result).tid
+  object_id    = tomap(data.external.account_info.result).oid
 
-    key_permissions = [
-      "Get",
-    ]
+  key_permissions = [
+    "Get",
+  ]
 
-    secret_permissions = [
-      "Get",
-      "Set"
-    ]
-  }
+  secret_permissions = [
+    "Get",
+    "Set"
+  ]
 }

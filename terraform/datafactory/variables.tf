@@ -8,6 +8,8 @@ variable "onpremise_vnet_id" {}
 
 variable "onpremise_vnet_subnet_id" {}
 
+variable "storage_account_id" {}
+
 variable "storage_account_name" {}
 
 variable "is_self_hosted_ir_setup_finished" {}

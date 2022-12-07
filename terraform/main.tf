@@ -95,6 +95,7 @@ module "datafactory" {
   resource_group_location           = azurerm_resource_group.this.location
   onpremise_vnet_id                 = module.networking.onpremise_vnet_id
   onpremise_vnet_subnet_id          = module.networking.onpremise_vnet_subnet_id
+  storage_account_id                = module.storage.storage_account_id
   storage_account_name              = module.storage.storage_account_name
   mssql_server_id                   = module.database.mssql_server_id
   key_vault_id                      = module.security.key_vault_id
