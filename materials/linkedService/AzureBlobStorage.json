@@ -1,0 +1,29 @@
+{
+	"name": "AzureBlobStorage",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"connectVia": {
+			"referenceName": "AzureIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		},
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"sasUri": "https://storage45ee7666.blob.core.windows.net",
+			"sasToken": {
+				"secretName": "sa-conn-string-45ee7666",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"type": "AzureKeyVaultSecret"
+			},
+			"servicePrincipalId": "",
+			"servicePrincipalKey": {
+				"type": "SecureString",
+				"value": "**********"
+			},
+			"tenant": ""
+		},
+		"annotations": []
+	}
+}
