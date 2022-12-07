@@ -1,9 +1,0 @@
-{
-	"name": "datafactory-99bf75c1",
-	"location": "japaneast",
-	"identity": {
-		"type": "SystemAssigned",
-		"principalId": "ecc0d779-6a22-4103-8063-c5e2a689c78a",
-		"tenantId": "a7e4486c-c794-4f5f-a372-ac53bd6d79e5"
-	}
-}
