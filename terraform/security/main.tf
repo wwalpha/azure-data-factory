@@ -19,10 +19,12 @@ resource "azurerm_key_vault_access_policy" "this" {
 
   key_permissions = [
     "Get",
+    "Delete",
   ]
 
   secret_permissions = [
     "Get",
-    "Set"
+    "Set",
+    "Delete",
   ]
 }
