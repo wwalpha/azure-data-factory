@@ -106,6 +106,7 @@ module "datafactory" {
   key_vault_secret_sqlserver_passwd = module.security.key_vault_secret_sqlserver_psw
   key_vault_secret_sa_conn          = module.security.key_vault_secret_sa_conn
   is_self_hosted_ir_setup_finished  = var.is_self_hosted_ir_setup_finished
+  sqlserver_database_fqdn           = local.sqlserver_database_fqdn
   suffix                            = local.suffix
 }
 
