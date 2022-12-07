@@ -12,8 +12,8 @@ my_client_ip             = "10.10.10.10"
 is_create_vpn_gateway    = true
 ```
 - Create Azure Infrastructure via Terraform
-- Approve `pending connections` from azure data factory managed virtual network
-- Approve `pending connections` in Private link service
+- Approve `pending connections` from azure data factory managed virtual network in `Private Link Center` of Azure Portal
+- Approve `pending connections` in `Private link service` of Azure Portal
 - Login to AzureVM and active Self Host Integration Runtime with token from terraform outputs
 - Modify `secrets.auto.tfvars` file and add new line `is_self_hosted_ir_setup_finished = true`
 - Rerun `terraform apply`
