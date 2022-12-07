@@ -1,11 +1,22 @@
 # azure-data-factory
 
 ## Installation
-- Set environment variables, `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`
+- Set environment variables: `ARM_SUBSCRIPTION_ID`, `ARM_TENANT_ID`
 - Modify `organization`, `workspaces` in `terraform/main.tf`
+- Create `secrets.auto.tfvars` file in terraform folder and add values
+```
+mssql_admin_password     = "P@ssw0rdExample"
+azurevm_admin_password   = "P@ssw0rdExample"
+sqlserver_admin_password = "P@ssw0rdExample"
+my_client_ip             = "10.10.10.10"
+is_create_vpn_gateway    = true
+```
 - Create Azure Infrastructure via Terraform
 - Approve `pending connections` from azure data factory managed virtual network
 - Approve `pending connections` in Private link service
+- Login to AzureVM and active Self Host Integration Runtime with token from terraform outputs
+- Modify `secrets.auto.tfvars` file and add new line `is_self_hosted_ir_setup_finished = true`
+- Rerun `terraform apply`
 
 ## Demonstrate
 - [Copy data from onpremise to Azure SQL database and Azure Storage via DataFactory](./copydata_from_onpremise/README.md)
